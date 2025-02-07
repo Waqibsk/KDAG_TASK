@@ -5,23 +5,25 @@ import axios from "axios";
 export default function AddPost() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-const navigate=useNavigate();
+  const navigate = useNavigate();
 
-
-  const handleSubmit=async (e)=>{
-e.preventDefault();
-const postData={
-  title,
-  description,
-}
-const response=await axios.post("http://localhost:8000/post/create",postData);
-if(response.data.message==="ok"){
-navigate("/")
-}
-else{
-  navigate("/add")
-}
-}
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const postData = {
+      title,
+      description,
+      createdAt: Date.now(),
+    };
+    const response = await axios.post(
+      "http://localhost:8000/post/create",
+      postData
+    );
+    if (response.data.message === "ok") {
+      navigate("/");
+    } else {
+      navigate("/add");
+    }
+  };
   return (
     <div>
       <div>
@@ -38,7 +40,9 @@ else{
               type="text"
               placeholder="Title"
               className="p-4 bg-white rounded-lg w-[40%] "
-              onChange={(e)=>{setTitle(e.target.value)}}
+              onChange={(e) => {
+                setTitle(e.target.value);
+              }}
             />
           </div>
           <div className="p-4 flex justify-center">
@@ -46,11 +50,16 @@ else{
               type="text"
               placeholder="Description"
               className="p-4  bg-white  rounded-lg w-[40%] "
-              onChange={(e)=>{setDescription(e.target.value)}}
+              onChange={(e) => {
+                setDescription(e.target.value);
+              }}
             />
           </div>
           <div className="p-4 flex justify-center">
-            <button className="bg-white text-black p-4 w-[15%] rounded-2xl cursor-pointer" onClick={handleSubmit}>
+            <button
+              className="bg-white text-black p-4 w-[15%] rounded-2xl cursor-pointer"
+              onClick={handleSubmit}
+            >
               submit
             </button>
           </div>

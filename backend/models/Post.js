@@ -16,7 +16,10 @@ const postSchema = new Schema({
   description: {
     type: String,
   },
-  comments:[commentSchema]
+  createdAt: {
+    type: Date,
+  },
+  comments: [commentSchema],
 });
 
 const Post = model("post", postSchema);
