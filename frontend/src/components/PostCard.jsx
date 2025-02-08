@@ -1,5 +1,7 @@
 import React from "react";
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
+
 export default function PostCard({ id, title, description, createdAt }) {
   const navigate = useNavigate();
   const handleClick = async () => {
@@ -8,6 +10,14 @@ export default function PostCard({ id, title, description, createdAt }) {
   const dateConverter = (dateString) => {
     const date = new Date(dateString);
     return date.toLocaleDateString();
+  };
+  const handleDelete = async () => {
+    const response = await axios.post(
+      `http://localhost:8000/post/${id}/delete`
+    );
+    if (response.data.message === "ok") {
+      navigate("/");
+    }
   };
   return (
     <div
@@ -18,9 +28,15 @@ export default function PostCard({ id, title, description, createdAt }) {
         <h2>{title.charAt(0).toUpperCase() + title.slice(1)}</h2>
       </div>
       <div className="px-4 pb-3 text-gray-300">{description}</div>
-      <div className="flex justify-end px-4">
-        <div className=" text-white px-4 py-2 ">
+      <div className="flex justify-between px-4">
+        <div className=" text-white  py-2 ">
           Created on: {dateConverter(createdAt)}
+        </div>
+        <div
+          className=" text-white bg-gray-600 rounded-lg px-4 py-2 "
+          onClick={handleDelete}
+        >
+          delete
         </div>
       </div>
     </div>

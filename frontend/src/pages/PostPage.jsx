@@ -14,13 +14,27 @@ export default function PostPage() {
       try {
         const response = await axios.get(`http://localhost:8000/post/${id}`);
         setPostDetails(response.data);
-        setComments(response.data.comments || []);
+        setComments(response.data.comments);
       } catch (err) {
         console.error("Error fetching post details:", err);
       }
     };
     fetchPostDetails();
   }, [id]);
+
+  const handleCommentDelete = async (commentId) => {
+    try {
+      console.log("this is comment id", commentId);
+      const response = await axios.post(
+        `http://localhost:8000/post/${id}/comment/${commentId}`
+      );
+      setComments((prevComments) =>
+        prevComments.filter((c) => c._id !== commentId)
+      );
+    } catch (err) {
+      console.error("Error deleting comment:", err);
+    }
+  };
 
   const handleAddComment = async () => {
     if (!comment.trim()) return;
@@ -32,8 +46,8 @@ export default function PostPage() {
           text: comment,
         }
       );
+      setComments((prevComments) => [...prevComments, response.data]);
 
-      setComments([...comments, response.data]);
       setComment("");
     } catch (err) {
       console.error("Error adding comment:", err);
@@ -84,11 +98,26 @@ export default function PostPage() {
           <h1 className="text-2xl font-semibold">Comments</h1>
           <div className="mt-2 space-y-3">
             {comments.length > 0 ? (
-              comments.map((c, index) => (
-                <div key={index} className="bg-gray-100 p-3 rounded-md">
-                  {c.text}
-                </div>
-              ))
+              comments.map((c, index) => {
+                // console.log("this is comment id", c._id);
+
+                return (
+                  <div
+                    key={index}
+                    className="bg-gray-100 p-3 flex justify-between rounded-md"
+                  >
+                    <div>{c.text}</div>
+                    <div
+                      className="bg-white text-black cursor-pointer"
+                      onClick={() => {
+                        handleCommentDelete(c._id);
+                      }}
+                    >
+                      delete
+                    </div>
+                  </div>
+                );
+              })
             ) : (
               <p className="text-gray-500">No comments yet.</p>
             )}

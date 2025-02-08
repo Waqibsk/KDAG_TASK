@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-
+const mongoose = require("mongoose");
 const Post = require("../models/Post");
 
 router.post("/create", async (req, res) => {
@@ -37,13 +37,38 @@ router.post("/:id/comment", async (req, res) => {
     const post = await Post.findById(req.params.id);
     if (!post) return res.status(404).json({ message: "Post not found" });
 
-    const newComment = { text: req.body.text };
+    const newComment = {
+      text: req.body.text,
+      _id: new mongoose.Types.ObjectId(),
+    };
     post.comments.push(newComment);
     await post.save();
 
     res.status(201).json(newComment);
   } catch (err) {
     res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+router.post("/:id/delete", async (req, res) => {
+  try {
+    const id = req.params.id;
+    await Post.findByIdAndDelete(id);
+    return res.json({ message: "ok" });
+  } catch (err) {}
+});
+router.post("/:postid/comment/:commentid", async (req, res) => {
+  try {
+    const { postid, commentid } = req.params;
+
+    await Post.findByIdAndUpdate(postid, {
+      $pull: { comments: { _id: commentid } },
+    });
+
+    
+    return res.json({message:"ok"});
+  } catch (err) {
+    console.error("Error deleting comment:", err);
+    return res.status(500).json({ error: "Something went wrong" });
   }
 });
 
