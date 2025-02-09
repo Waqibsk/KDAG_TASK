@@ -21,6 +21,7 @@ export default function AddPost() {
     if (response.data.message === "ok") {
       navigate("/");
     } else {
+      alert(response.data.message)
       navigate("/add");
     }
   };

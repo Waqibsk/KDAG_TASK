@@ -6,6 +6,9 @@ const Post = require("../models/Post");
 router.post("/create", async (req, res) => {
   try {
     const { title, description, createdAt } = req.body;
+    if(!title|| !description ){
+    return res.json({message:"All fields required"})
+    }
     console.log(Date.now());
     const post = await Post.create({
       title,
@@ -36,7 +39,7 @@ router.post("/:id/comment", async (req, res) => {
   try {
     const post = await Post.findById(req.params.id);
     if (!post) return res.status(404).json({ message: "Post not found" });
-
+    
     const newComment = {
       text: req.body.text,
       _id: new mongoose.Types.ObjectId(),

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import Navbar from "../components/Navbar";
-
+import deleteIcon from "../assets/bin.png"
 export default function PostPage() {
   const { id } = useParams();
   const [postDetails, setPostDetails] = useState(null);
@@ -46,6 +46,7 @@ export default function PostPage() {
           text: comment,
         }
       );
+      
       setComments((prevComments) => [...prevComments, response.data]);
 
       setComment("");
@@ -66,13 +67,17 @@ export default function PostPage() {
   return (
     <div>
       <Navbar />
-      <div className="pb-4 m-5 flex flex-col">
-        <div className="font-semibold text-3xl">
+      
+      <div className="pb-4 m-5 flex flex-col  my-5">
+        <div className=" mb-8">
+        <div className="font-bold text-3xl my-2  ">
           {postDetails.title.charAt(0).toUpperCase() +
             postDetails.title.slice(1)}
         </div>
-        <div className="text-2xl">{postDetails.description}</div>
+        <div className="text-2xl font-medium">{postDetails.description}</div>
 
+        </div>
+       
         <div className="my-7">
           <h1 className="text-2xl font-semibold">Add Comment</h1>
           <div className="flex ">
@@ -108,12 +113,12 @@ export default function PostPage() {
                   >
                     <div>{c.text}</div>
                     <div
-                      className="bg-white text-black cursor-pointer"
+                      className=" text-black cursor-pointer"
                       onClick={() => {
                         handleCommentDelete(c._id);
                       }}
                     >
-                      delete
+                    <img src={deleteIcon} alt="Delete" className="w-5 h-5" />
                     </div>
                   </div>
                 );
