@@ -12,10 +12,12 @@ function App() {
     const getPosts = async () => {
       const response = await axios.get("http://localhost:8000/post");
       console.log(response.data);
+      const sortedPosts = response.data.sort(
+        (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+      );
+      setPosts(sortedPosts);
 
-      setPosts(response.data);
-
-      setFilteredPosts(response.data);
+      setFilteredPosts(sortedPosts);
     };
     getPosts();
   }, []);
