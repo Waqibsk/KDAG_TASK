@@ -3,16 +3,16 @@ import { Link } from 'react-router-dom'
 export default function Navbar() {
   return (
     <div>
-      <nav className="bg-black text-gray-300  flex justify-between items-center">
+      <nav className="bg-black text-gray-300  flex justify-between items-center p-3">
       <div className="flex items-center space-x-2 p-2">
-        <img className="w-[20%]" src="https://media.licdn.com/dms/image/v2/D4D0BAQFYn-N0fzx9nQ/company-logo_200_200/company-logo_200_200/0/1704312041712/kdag_logo?e=2147483647&v=beta&t=XdA1RKLiBvnR1Q7_MeTjLvdklii453_MLiF8B3NgWa8" alt="" />
-        <p className=" text-white  text-1xl">Kharagpur <span className='font-bold '>Data<br/> Analytics</span>  Group</p>
+        <img className=" rounded-sm w-[20%]" src="https://media.licdn.com/dms/image/v2/D4D0BAQFYn-N0fzx9nQ/company-logo_200_200/company-logo_200_200/0/1704312041712/kdag_logo?e=2147483647&v=beta&t=XdA1RKLiBvnR1Q7_MeTjLvdklii453_MLiF8B3NgWa8" alt="" />
+        <p className=" text-white font-light text-1xl font-[sans]">Kharagpur <span className='font-bold '>Data<br/> Analytics</span>  Group</p>
       </div>
     <div className='flex space-x-8'>
-        <Link to="/add" className='text-1xl p-2 font-medium hover:bg-cyan-400 hover:text-black rounded-lg transition duration-400'>
-            Add-post
+        <Link to="/add" className='text-xl p-2 font-medium hover:bg-white hover:text-black rounded-lg transition duration-400'>
+            Add post
         </Link>
-        <Link to="/" className='text-1xl p-2 mr-4  hover:bg-cyan-400 hover:text-black rounded-lg transition duration-400'>
+        <Link to="/" className='text-xl p-2 mr-4  hover:bg-white hover:text-black rounded-lg transition duration-400'>
             Home
         </Link>
     

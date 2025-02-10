@@ -58,7 +58,7 @@ export default function AddPost() {
           </div>
           <div className="p-4 flex justify-center">
             <button
-              className="bg-white text-black p-4 w-[15%] rounded-2xl cursor-pointer"
+              className="bg-white text-black p-4 w-[25%] rounded-2xl cursor-pointer"
               onClick={handleSubmit}
             >
               submit

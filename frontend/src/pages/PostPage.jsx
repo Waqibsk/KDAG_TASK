@@ -65,33 +65,33 @@ export default function PostPage() {
   }
 
   return (
-    <div>
+    <div className="text-white bg-black min-h-screen ">
       <Navbar />
       
       <div className="pb-4 m-5 flex flex-col  my-5">
         <div className=" mb-8">
-        <div className="font-bold text-3xl my-2  ">
+        <div className="font-bold text-5xl mb-5   font-[Poppins]">
           {postDetails.title.charAt(0).toUpperCase() +
             postDetails.title.slice(1)}
         </div>
-        <div className="text-2xl font-medium">{postDetails.description}</div>
+        <div className="text-2xl font-medium whitespace-pre-line font-[Merriweather]">{postDetails.description}</div>
 
         </div>
        
         <div className="my-7">
-          <h1 className="text-2xl font-semibold">Add Comment</h1>
+          <h1 className="text-2xl font-semibold font-[Poppins]">Add Comment</h1>
           <div className="flex ">
             <textarea
               type="text"
               placeholder="Write a comment..."
-              className="w-[40%] h-30 border border-gray-300 p-2 rounded-lg my-2"
+              className="w-[40%] h-30 border border-gray-300 p-2 rounded-lg my-2 font-[Nunito]"
               value={comment}
               onChange={(e) => setComment(e.target.value)}
             />
           </div>
           <div className="">
             <button
-              className="bg-blue-500 text-white px-4 py-2 my-2 rounded-lg hover:bg-blue-600"
+              className="bg-white  text-black cursor-pointer px-4 py-2 my-2 rounded-lg hover:bg-gray-200 transition duration-200 font-[Raleway]"
               onClick={handleAddComment}
             >
               Submit
@@ -100,7 +100,7 @@ export default function PostPage() {
         </div>
 
         <div className="text-2xl">
-          <h1 className="text-2xl font-semibold">Comments</h1>
+          <h1 className="text-2xl font-semibold font-[Poppins]">Comments</h1>
           <div className="mt-2 space-y-3">
             {comments.length > 0 ? (
               comments.map((c, index) => {
@@ -109,22 +109,22 @@ export default function PostPage() {
                 return (
                   <div
                     key={index}
-                    className="bg-gray-100 p-3 flex justify-between rounded-md"
+                    className="bg-black p-3 flex justify-between rounded-md text-white"
                   >
-                    <div>{c.text}</div>
+                    <div className="">{c.text}</div>
                     <div
                       className=" text-black cursor-pointer"
                       onClick={() => {
                         handleCommentDelete(c._id);
                       }}
                     >
-                    <img src={deleteIcon} alt="Delete" className="w-5 h-5" />
+                    <img src={deleteIcon} alt="Delete" className="w-5 h-5 filter invert  " />
                     </div>
                   </div>
                 );
               })
             ) : (
-              <p className="text-gray-500">No comments yet.</p>
+              <p className="text-gray-500 font-[Merriweather]">No comments yet.</p>
             )}
           </div>
         </div>

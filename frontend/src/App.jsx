@@ -48,8 +48,9 @@ function App() {
       </div>
       <div className=" text-white">
         <div>
-          <h1 className="m-5 text-3xl font-bold">Latest Posts</h1>
+          <h1 className="my-3 mx-5 text-4xl font-bold font-[Poppins]">Latest Posts</h1>
         </div>
+        <div className="grid grid-cols-3 gap-1 max-[880px]:grid-cols-2 max-[1000px]:grid-cols-2 max-[650px]:grid-cols-1 w-[98%] ">
         {filteredPosts.length === 0 ? (
           <div className="m-5">No posts</div>
         ) : (
@@ -58,12 +59,14 @@ function App() {
               id={post._id}
               key={post._id || index}
               title={post.title}
-              description={post.description}
+              description={post.description.split(" ").slice(0,20).join(" ")+(post.description.split(" ").length>20?"...":"")}
               createdAt={post.createdAt}
             />
           ))
         )}
-      </div>
+      
+        </div>
+       </div>
     </div>
   );
 }
