@@ -26,6 +26,10 @@ build/
 *.sln
 *.sw?
 
+# MongoDB data
+dump/
+data/
+
 # Coverage reports
 coverage/
 
