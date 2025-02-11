@@ -50,7 +50,7 @@ function App() {
         <div>
           <h1 className="my-3 mx-5 text-4xl font-bold font-[Poppins]">Latest Posts</h1>
         </div>
-        <div className="grid grid-cols-3 gap-1 max-[880px]:grid-cols-2 max-[1000px]:grid-cols-2 max-[650px]:grid-cols-1 w-[98%] ">
+        <div className="grid grid-cols-3   max-[880px]:grid-cols-2 max-[1124px]:grid-cols-2 max-[650px]:grid-cols-1 w-[98%] ">
         {filteredPosts.length === 0 ? (
           <div className="m-5">No posts</div>
         ) : (
@@ -58,7 +58,7 @@ function App() {
             <PostCard
               id={post._id}
               key={post._id || index}
-              title={post.title}
+              title={post.title.split(" ").slice(0,4).join(" ")+(post.title.split(" ").length>4?"...":"")}
               description={post.description.split(" ").slice(0,20).join(" ")+(post.description.split(" ").length>20?"...":"")}
               createdAt={post.createdAt}
             />

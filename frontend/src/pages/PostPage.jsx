@@ -69,7 +69,7 @@ export default function PostPage() {
       <Navbar />
       
       <div className="pb-4 m-5 flex flex-col  my-5">
-        <div className=" mb-8">
+        <div className=" my-9 ">
         <div className="font-bold text-5xl mb-5   font-[Poppins]">
           {postDetails.title.charAt(0).toUpperCase() +
             postDetails.title.slice(1)}
@@ -109,16 +109,16 @@ export default function PostPage() {
                 return (
                   <div
                     key={index}
-                    className="bg-black p-3 flex justify-between rounded-md text-white"
+                    className="bg-gray-800 p-3 flex justify-between rounded-md text-white"
                   >
-                    <div className="">{c.text}</div>
+                    <div className="text-sm">{c.text}</div>
                     <div
-                      className=" text-black cursor-pointer"
+                      className=" text-black cursor-pointer flex  items-center"
                       onClick={() => {
                         handleCommentDelete(c._id);
                       }}
                     >
-                    <img src={deleteIcon} alt="Delete" className="w-5 h-5 filter invert  " />
+                    <img src={deleteIcon} alt="Delete" className="w-4 filter invert  " />
                     </div>
                   </div>
                 );

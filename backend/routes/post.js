@@ -9,13 +9,13 @@ router.post("/create", async (req, res) => {
     if(!title|| !description ){
     return res.json({message:"All fields required"})
     }
-    console.log(Date.now());
+    // console.log(Date.now());
     const post = await Post.create({
       title,
       description,
       createdAt,
     });
-    console.log("this is the post", post);
+    // console.log("this is the post", post);
 
     return res.json({ message: "ok" });
   } catch (err) {}
@@ -24,7 +24,10 @@ router.get("/", async (req, res) => {
   try {
     const posts = await Post.find({});
     res.json(posts);
-  } catch (err) {}
+  } catch (err) {
+    console.log(err);
+
+  }
 });
 
 router.get("/:id", async (req, res) => {
@@ -33,7 +36,10 @@ router.get("/:id", async (req, res) => {
   try {
     const post = await Post.findById(id);
     return res.json(post);
-  } catch (err) {}
+  } catch (err) {
+
+    console.log(err);
+  }
 });
 router.post("/:id/comment", async (req, res) => {
   try {

@@ -22,7 +22,7 @@ export default function PostCard({ id, title, description, createdAt }) {
   return (
     <div>
       <div
-        className="pb-4 m-5 bg-gray-800 w-[20rem] h-[16rem] max-[1000px]:w-[25rem] max-[880px]:w-[22rem] max-[768px]:w-[18rem] max-[650px]:w-[21rem] rounded-lg  cursor-pointer "
+        className="pb-4 m-5 bg-gray-900 w-[22.5rem] h-[16rem] max-[1124px]:w-[25rem] max-[880px]:w-[22rem] max-[768px]:w-[18rem] max-[650px]:w-[21rem] rounded-lg  cursor-pointer "
         onClick={handleClick}
       >
         <div className="p-4 text-2xl font-semibold text-white  ">
