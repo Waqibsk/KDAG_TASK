@@ -9,9 +9,13 @@ function App() {
   const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
+    
+    //getting all the posts 
     const getPosts = async () => {
       const response = await axios.get("http://localhost:8000/post");
-      console.log(response.data);
+      // console.log(response.data);
+
+      //sort the post such that latest post comes first 
       const sortedPosts = response.data.sort(
         (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
       );
@@ -19,9 +23,15 @@ function App() {
 
       setFilteredPosts(sortedPosts);
     };
+  
     getPosts();
   }, []);
+
+
+
+  //search-bar logic
   useEffect(() => {
+    
     setFilteredPosts(
       posts.filter(
         (post) =>
@@ -32,7 +42,7 @@ function App() {
   }, [searchQuery, posts]);
 
   return (
-    <div className=" bg-black min-h-screen">
+    <div className=" bg-[#0b0b0b] min-h-screen">
       <div>
         <Navbar />
       </div>

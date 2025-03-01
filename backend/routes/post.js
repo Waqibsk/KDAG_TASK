@@ -3,6 +3,8 @@ const router = express.Router();
 const mongoose = require("mongoose");
 const Post = require("../models/Post");
 
+
+//creating post 
 router.post("/create", async (req, res) => {
   try {
     const { title, description, createdAt } = req.body;
@@ -20,6 +22,8 @@ router.post("/create", async (req, res) => {
     return res.json({ message: "ok" });
   } catch (err) {}
 });
+
+//getting all posts 
 router.get("/", async (req, res) => {
   try {
     const posts = await Post.find({});
@@ -30,6 +34,8 @@ router.get("/", async (req, res) => {
   }
 });
 
+
+//getting individual pages 
 router.get("/:id", async (req, res) => {
   const { id } = req.params;
   // console.log("this is the id i got",id);
@@ -41,6 +47,8 @@ router.get("/:id", async (req, res) => {
     console.log(err);
   }
 });
+
+//getting comments of individual posts 
 router.post("/:id/comment", async (req, res) => {
   try {
     const post = await Post.findById(req.params.id);
@@ -58,6 +66,8 @@ router.post("/:id/comment", async (req, res) => {
     res.status(500).json({ error: "Internal Server Error" });
   }
 });
+
+//deleting posts by their id 
 router.post("/:id/delete", async (req, res) => {
   try {
     const id = req.params.id;
@@ -65,6 +75,9 @@ router.post("/:id/delete", async (req, res) => {
     return res.json({ message: "ok" });
   } catch (err) {}
 });
+
+
+//deleting  comment of a post  
 router.post("/:postid/comment/:commentid", async (req, res) => {
   try {
     const { postid, commentid } = req.params;

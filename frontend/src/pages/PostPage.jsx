@@ -24,7 +24,7 @@ export default function PostPage() {
 
   const handleCommentDelete = async (commentId) => {
     try {
-      console.log("this is comment id", commentId);
+      // console.log("this is comment id", commentId);
       const response = await axios.post(
         `http://localhost:8000/post/${id}/comment/${commentId}`
       );
@@ -65,7 +65,7 @@ export default function PostPage() {
   }
 
   return (
-    <div className="text-white bg-black min-h-screen ">
+    <div className="text-white bg-[#212020] min-h-screen ">
       <Navbar />
       
       <div className="pb-4 m-5 flex flex-col  my-5">
@@ -74,7 +74,7 @@ export default function PostPage() {
           {postDetails.title.charAt(0).toUpperCase() +
             postDetails.title.slice(1)}
         </div>
-        <div className="text-2xl font-medium whitespace-pre-line font-[Merriweather]">{postDetails.description}</div>
+        <div className="text-2xl font-medium whitespace-pre-line font-[Merriweather] ">{postDetails.description}</div>
 
         </div>
        
@@ -109,7 +109,7 @@ export default function PostPage() {
                 return (
                   <div
                     key={index}
-                    className="bg-gray-800 p-3 flex justify-between rounded-md text-white"
+                    className="bg-[#0b0b0b] p-3 flex justify-between rounded-md text-white"
                   >
                     <div className="text-sm">{c.text}</div>
                     <div

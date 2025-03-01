@@ -31,7 +31,7 @@ export default function AddPost() {
         <Navbar />
       </div>
 
-      <div className="flex justify-center items-center min-h-screen bg-black ">
+      <div className="flex justify-center items-center min-h-screen bg-[#0b0b0b]">
         <div className="flex-col w-full">
           <h2 className="flex justify-center text-4xl text-white font-bold">
             Add Post
